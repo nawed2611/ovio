@@ -145,7 +145,7 @@ export default function WaveformCanvas({
     const animate = () => {
       animationRef.current = requestAnimationFrame(animate);
       
-      analyser.getByteFrequencyData(dataArray);
+      analyser.getByteFrequencyData(dataArray as Uint8Array<ArrayBuffer>);
       
       // Clear canvas with transparency to show grain gradient
       ctx.clearRect(0, 0, canvas.width, canvas.height);
