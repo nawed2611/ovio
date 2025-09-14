@@ -8,8 +8,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  --font-family-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-family-mono: var(--font-geist-mono), ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,7 +23,6 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
 }
 
 /* Custom scrollbar for webkit browsers */
@@ -90,4 +90,51 @@ canvas {
 
 .animate-gradient-x {
   animation: gradient-x 3s ease infinite;
+}
+
+/* Custom font utility classes */
+.font-instrument {
+  font-family: var(--font-family-serif);
+}
+
+.font-geist-mono {
+  font-family: var(--font-family-mono);
+}
+
+/* Enhanced typography and interaction styles */
+.text-heavy {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.text-super-heavy {
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+/* Interactive button states */
+.btn-interactive {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.btn-interactive:hover {
+  transform: scale(1.05);
+}
+
+.btn-interactive:active {
+  transform: scale(0.95);
+}
+
+/* Smooth scale animations */
+.scale-hover {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scale-hover:hover {
+  transform: scale(1.02);
+}
+
+.scale-hover:active {
+  transform: scale(0.98);
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
 interface WaveformCanvasProps {
   waveformData: unknown | null;
@@ -147,9 +147,8 @@ export default function WaveformCanvas({
       
       analyser.getByteFrequencyData(dataArray);
       
-      // Clear canvas with deep black
-      ctx.fillStyle = '#000000';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // Clear canvas with transparency to show grain gradient
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       // Add audio name at top left with Geist Mono font
       ctx.font = '32px "Geist Mono", "Monaco", "Consolas", monospace';
@@ -157,13 +156,7 @@ export default function WaveformCanvas({
       ctx.textAlign = 'left';
       ctx.textBaseline = 'top';
       ctx.fillText(audioName, 40, 40);
-      
-      // Add "made by ovio" brand at bottom right
-      ctx.font = '24px "Geist Mono", "Monaco", "Consolas", monospace';
-      ctx.fillStyle = '#888888';
-      ctx.textAlign = 'right';
-      ctx.textBaseline = 'bottom';
-      ctx.fillText('made by ovio', canvas.width - 40, canvas.height - 40);
+
       
       // Calculate dimensions for full-width coverage
       const centerY = canvas.height / 2;
@@ -246,7 +239,7 @@ export default function WaveformCanvas({
   if (!audioFile) {
     return (
       <div className="w-full h-[400px] bg-gray-100 dark:bg-gray-900 rounded-lg flex items-center justify-center">
-        <p className="text-gray-500 dark:text-gray-400">Upload an audio file to see the waveform</p>
+        <p className="text-gray-500 dark:text-gray-400 font-semibold">upload an audio file to see the waveform</p>
       </div>
     );
   }
@@ -255,10 +248,11 @@ export default function WaveformCanvas({
     <div className="w-full max-w-2xl mx-auto space-y-6">
       {/* Square Canvas Container */}
       <div className="relative bg-black rounded-2xl overflow-hidden aspect-square">
+       
         
         {isLoading && (
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
-            <div className="text-white font-medium">Loading audio...</div>
+            <div className="text-white font-bold">loading audio...</div>
           </div>
         )}
         
@@ -267,7 +261,7 @@ export default function WaveformCanvas({
           ref={canvasRef}
           width={1200}
           height={1200}
-          className="w-full h-full"
+          className="w-full h-full relative z-5"
           style={{ imageRendering: 'crisp-edges' }}
         />
         
@@ -280,8 +274,8 @@ export default function WaveformCanvas({
         <button
           type="button"
           onClick={onPlayPause}
-          className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-200"
-          aria-label={isPlaying ? 'Pause' : 'Play'}
+          className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 hover:opacity-100 hover:scale-105 active:scale-95 transition-all duration-200"
+          aria-label={isPlaying ? 'pause' : 'play'}
         >
           <div className="bg-white/90 rounded-full p-4">
             {isPlaying ? (
@@ -303,8 +297,8 @@ export default function WaveformCanvas({
           <button
             type="button"
             onClick={onPlayPause}
-            className="bg-green-600 hover:bg-green-700 text-white rounded-full p-3 transition-colors"
-            aria-label={isPlaying ? 'Pause' : 'Play'}
+            className="bg-green-600 hover:bg-green-700 hover:scale-110 active:scale-95 text-white rounded-full p-3 transition-all duration-200"
+            aria-label={isPlaying ? 'pause' : 'play'}
           >
             {isPlaying ? (
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -317,13 +311,13 @@ export default function WaveformCanvas({
             )}
           </button>
           
-          <div className="text-sm text-gray-600 dark:text-gray-400 font-mono">
+          <div className="text-sm text-gray-600 dark:text-gray-300 font-mono font-semibold">
             {formatTime(currentTime)} / {formatTime(duration)}
           </div>
         </div>
 
-        <div className="text-sm text-gray-600 dark:text-gray-400">
-          Real-time Audio Visualization
+        <div className="text-sm text-gray-600 dark:text-gray-300 font-semibold">
+          real-time audio visualization
         </div>
       </div>
     </div>

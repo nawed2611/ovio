@@ -57,16 +57,16 @@ export default function AudioUploader({ onFileSelect, isLoading }: AudioUploader
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full max-w-2xl mx-auto ">
       <button
         type="button"
         disabled={isLoading}
         className={`
           relative border-2 border-dashed rounded-xl p-12 text-center cursor-pointer
-          transition-all duration-300 ease-in-out
+          transition-all duration-300 ease-in-out hover:scale-[1.02] active:scale-[0.98]
           ${dragActive 
-            ? 'border-blue-400 bg-blue-50 dark:bg-blue-950/20' 
-            : 'border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600'
+            ? 'border-blue-400 bg-blue-50 dark:bg-blue-950/20 scale-[1.02]' 
+            : 'border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800/20'
           }
           ${isLoading ? 'pointer-events-none opacity-50' : ''}
         `}
@@ -90,20 +90,20 @@ export default function AudioUploader({ onFileSelect, isLoading }: AudioUploader
           {isLoading ? (
             <>
               <div className="w-16 h-16 mx-auto border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-              <p className="text-lg font-medium text-gray-700 dark:text-gray-300">
-                Processing audio...
+              <p className="text-lg font-bold text-gray-700 dark:text-gray-300">
+                processing audio...
               </p>
             </>
           ) : (
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                  Upload Your Audio
+                <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2">
+                  upload your audio
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  Drag and drop an audio file here, or click to browse
+                <p className="text-gray-600 dark:text-gray-300 mb-4 font-semibold">
+                  drag and drop an audio file here, or click to browse
                 </p>
-                <p className="text-sm text-gray-500 dark:text-gray-500">
-                  Supports MP3, WAV, M4A, FLAC and more
+                <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                  supports mp3, wav, m4a, flac and more
                 </p>
               </div>
           )}
