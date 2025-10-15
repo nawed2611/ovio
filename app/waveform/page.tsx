@@ -1,9 +1,9 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
+import { useAudio } from "@/components/AudioContext";
 import WaveformCanvas from "@/components/WaveformCanvas";
 import ShaderBackground from "@/components/ShaderBackground";
-import { useAudio } from "@/components/AudioContext";
 
 export default function Waveform() {
 const { audioFile, isPlaying, setIsPlaying, setAudioFile } = useAudio();

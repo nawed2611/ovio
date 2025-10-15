@@ -29,7 +29,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
         <AudioProvider>
-          {children}
+          <div className="flex flex-col h-screen">
+            {children}
+          </div>
         </AudioProvider>
       </body>
     </html>

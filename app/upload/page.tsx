@@ -1,9 +1,9 @@
 "use client";
 
-import AudioUploader from "@/components/AudioUploader"
 import { useRouter } from 'next/navigation';
-import ShaderBackground from "@/components/ShaderBackground";
 import { useAudio } from "@/components/AudioContext";
+import AudioUploader from "@/components/AudioUploader"
+import ShaderBackground from "@/components/ShaderBackground";
 
 export default function Upload() {
 const { setAudioFile } = useAudio();
