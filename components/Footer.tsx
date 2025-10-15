@@ -14,6 +14,24 @@ export default function Footer() {
             >
               Pricing
             </Link>
+            <Link 
+              href="/privacy" 
+              className="text-white/80 hover:text-white transition-colors font-medium"
+            >
+              Privacy
+            </Link>
+            <Link 
+              href="/terms" 
+              className="text-white/80 hover:text-white transition-colors font-medium"
+            >
+              Terms
+            </Link>
+            <Link 
+              href="/refund" 
+              className="text-white/80 hover:text-white transition-colors font-medium"
+            >
+              Refund Policy
+            </Link>
           </div>
           
           <div className="flex items-center gap-4">
